@@ -1,8 +1,8 @@
 package com.example.gmailcloneapp.components
 
-import android.content.pm.ModuleInfo
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.ScrollState
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Divider
@@ -11,7 +11,10 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Outline
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.gmailcloneapp.DrawerMenuData
@@ -20,8 +23,8 @@ import com.example.gmailcloneapp.DrawerMenuData
 fun DrawerMenu(scrollState: ScrollState){
 
     val menuList = listOf  (
+        DrawerMenuData.Divider,
         DrawerMenuData.AllInboxes,
-        DrawerMenuData.Primary,
         DrawerMenuData.Divider,
         DrawerMenuData.Primary,
         DrawerMenuData.Social,
@@ -46,14 +49,14 @@ fun DrawerMenu(scrollState: ScrollState){
     Column(modifier = Modifier.verticalScroll(state = scrollState)) {
         Text( text = "Gmail",
             color = Color.Red,
-            modifier = Modifier.padding(start = 20.dp, top = 20.dp),
+            modifier = Modifier.padding(start = 20.dp, top = 20.dp, bottom = 12.dp),
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold
         )
         menuList.forEach {
             item -> when{
                 item.isDivider -> {
-                    Divider(modifier = Modifier.padding(bottom = 20.dp, top = 20.dp))
+                    Divider(modifier = Modifier.padding(bottom = 10.dp, top = 10.dp))
                 }
 
                 item.isHeader -> {
@@ -82,5 +85,17 @@ fun MailDrawerItem(item: DrawerMenuData){
             modifier = Modifier.weight(0.25f)
         )
         Text(text = item.title, modifier = Modifier.weight(1.0f))
+    }
+}
+
+@Composable
+fun customShape() =  object : Shape {
+
+    override fun createOutline(
+        size: androidx.compose.ui.geometry.Size,
+        layoutDirection: androidx.compose.ui.unit.LayoutDirection,
+        density: Density
+    ): Outline {
+        return Outline.Rectangle(androidx.compose.ui.geometry.Rect(0f,0f,size.width*8/9, size.height))
     }
 }
