@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.gmailcloneapp.components.BottomNavigationMenu
 import com.example.gmailcloneapp.components.DrawerMenu
 import com.example.gmailcloneapp.components.HomeAppBar
 import com.example.gmailcloneapp.components.customShape
@@ -40,11 +41,13 @@ fun GmailApp() {
     Scaffold(
         scaffoldState = scaffoldState,
         topBar = { HomeAppBar(scaffoldState = scaffoldState, scope = coroutineScope)},
+        bottomBar = { BottomNavigationMenu() },
         drawerContent = {
             DrawerMenu(scrollState)
         },
         drawerShape = customShape(),
-        drawerBackgroundColor = Color(android.graphics.Color.parseColor("#EAF1FB"))
+        drawerBackgroundColor = Color(0xFFEAF1FB)
+
     ){
 
     }

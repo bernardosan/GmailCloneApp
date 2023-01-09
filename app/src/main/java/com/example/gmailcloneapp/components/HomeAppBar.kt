@@ -2,7 +2,6 @@ package com.example.gmailcloneapp.components
 
 import com.example.gmailcloneapp.R
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -13,7 +12,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.focus.focusModifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -29,7 +27,7 @@ fun HomeAppBar(scaffoldState: ScaffoldState, scope: CoroutineScope){
         Card(
             modifier = Modifier.requiredHeight(50.dp),
             shape = RoundedCornerShape(30.dp),
-            backgroundColor = Color(android.graphics.Color.parseColor("#EAF1FB")),
+            backgroundColor = Color(0xFFEAF1FB),
             elevation = 6.dp
         ){
             Row(

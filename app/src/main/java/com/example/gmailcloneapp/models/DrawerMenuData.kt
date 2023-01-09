@@ -1,4 +1,4 @@
-package com.example.gmailcloneapp
+package com.example.gmailcloneapp.models
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.*
@@ -8,7 +8,7 @@ sealed class DrawerMenuData (
     val icon: ImageVector? = null,
     val title: String? = null,
     val isDivider: Boolean = false,
-    val isHeader: Boolean = false,
+    val isHeader: Boolean = false
 ){
     object AllInboxes: DrawerMenuData(
         icon = Icons.Outlined.AllInbox,
@@ -82,11 +82,11 @@ sealed class DrawerMenuData (
 
     object HeaderAllLabels: DrawerMenuData(
         isHeader = true,
-        title = "ALL LABELS"
+        title = "All labels"
     )
 
     object HeaderGoogleApps: DrawerMenuData(
         isHeader = true,
-        title = "GOOGLE APPS"
+        title = "Google Apps"
     )
 }
