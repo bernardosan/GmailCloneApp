@@ -27,7 +27,7 @@ fun MailList(paddingValues: PaddingValues){
     Box(modifier = Modifier.padding(paddingValues).fillMaxSize()) {
         LazyColumn(modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp)){
+            .padding(top = 16.dp, start = 16.dp, end = 16.dp)){
             items(mailList){
                mailData -> MailItem(mailData = mailData)
             }

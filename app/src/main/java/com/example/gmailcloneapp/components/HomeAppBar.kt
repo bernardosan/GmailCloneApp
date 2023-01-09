@@ -44,7 +44,7 @@ fun HomeAppBar(scaffoldState: ScaffoldState, scope: CoroutineScope){
                 }){
                     Icon(Icons.Default.Menu, "Menu")
                 }
-                Divider(color = Color.Transparent, modifier = Modifier.fillMaxHeight().width(12.dp))
+                //Divider(color = Color.Transparent, modifier = Modifier.fillMaxHeight().width(0.dp))
                 Text(text = "Search in e-mails", modifier = Modifier.weight(2.0f))
                 Divider(color = Color.Transparent, modifier = Modifier.fillMaxHeight().width(2.dp))
                 Image(painter = painterResource(id = R.drawable.ic_user_place_holder),

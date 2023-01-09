@@ -15,7 +15,7 @@ fun BottomNavigationMenu(){
         BottomMenuData.Meet
     )
     
-    BottomNavigation(backgroundColor = Color.White, contentColor = Color.Black) {
+    BottomNavigation(backgroundColor = Color(0xFFEAF1FB), contentColor = Color.Black) {
         item.forEach {
             BottomNavigationItem(
                 label = {Text(text = it.title!!)},
