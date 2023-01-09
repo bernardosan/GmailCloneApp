@@ -24,5 +24,6 @@ fun BottomNavigationMenu(){
                 onClick = { /*TODO*/},
                 icon = {Icon(imageVector = it.icon!!, contentDescription = it.title)})
         }
+
     }
 }

@@ -3,10 +3,12 @@ package com.example.gmailcloneapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.gmailcloneapp.components.BottomNavigationMenu
@@ -37,7 +39,6 @@ fun GmailApp() {
     val coroutineScope = rememberCoroutineScope()
     val scrollState = rememberScrollState()
 
-
     Scaffold(
         scaffoldState = scaffoldState,
         topBar = { HomeAppBar(scaffoldState = scaffoldState, scope = coroutineScope)},
@@ -49,7 +50,10 @@ fun GmailApp() {
         drawerBackgroundColor = Color(0xFFEAF1FB)
 
     ){
-
+        LazyColumn{
+            items(50){
+            }
+        }
     }
 }
 
