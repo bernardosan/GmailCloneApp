@@ -1,7 +1,8 @@
 package com.example.gmailcloneapp.components
 
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
@@ -18,24 +19,31 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.gmailcloneapp.utils.mailList
 import com.example.gmailcloneapp.models.MailData
 
 @Composable
 fun MailList(paddingValues: PaddingValues){
-    Box() {
-        // TODO: create a mock data to show the list
+    Box(modifier = Modifier.padding(paddingValues).fillMaxSize()) {
+        LazyColumn(modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp)){
+            items(mailList){
+               mailData -> MailItem(mailData = mailData)
+            }
+        }
     }
 }
 
 @Composable
-fun MailItem(mailData: MailData, modifier: Modifier = Modifier){
+fun MailItem(mailData: MailData){
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(bottom = 8.dp)
+            .padding(bottom = 24.dp)
     ){
         Card(modifier = Modifier
-            .padding(end = 8.dp)
+            .padding(end = 16.dp)
             .size(40.dp)
             .clip(CircleShape),
         backgroundColor = Color.Gray){
@@ -58,7 +66,7 @@ fun MailItem(mailData: MailData, modifier: Modifier = Modifier){
             )
         }
         Column {
-            Text(text = mailData.timestamp)
+            Text(text = mailData.timestamp, fontSize = 12.sp, fontWeight = FontWeight.Bold)
             IconButton(
                 onClick = { /*TODO*/ },
                 modifier = Modifier

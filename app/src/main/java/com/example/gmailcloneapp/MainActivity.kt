@@ -11,10 +11,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.gmailcloneapp.components.BottomNavigationMenu
-import com.example.gmailcloneapp.components.DrawerMenu
-import com.example.gmailcloneapp.components.HomeAppBar
-import com.example.gmailcloneapp.components.customShape
+import com.example.gmailcloneapp.components.*
 import com.example.gmailcloneapp.ui.theme.GmailCloneAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -50,10 +47,8 @@ fun GmailApp() {
         drawerBackgroundColor = Color(0xFFEAF1FB)
 
     ){
-        LazyColumn{
-            items(50){
-            }
-        }
+
+        MailList(paddingValues = it)
     }
 }
 
