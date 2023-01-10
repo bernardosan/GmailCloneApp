@@ -1,9 +1,9 @@
 package com.example.gmailcloneapp.components
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.gestures.scrollable
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -73,7 +73,7 @@ fun MailItem(mailData: MailData){
                 fontSize = 14.sp
             )
         }
-        Column {
+        Column() {
             Text(text = mailData.timestamp, fontSize = 12.sp, fontWeight = FontWeight.Bold)
             IconButton(
                 onClick = { /*TODO*/ },
@@ -81,7 +81,7 @@ fun MailItem(mailData: MailData){
                     .size(15.dp)
                     .padding(top = 16.dp))
             {
-                Image(imageVector = Icons.Outlined.StarOutline, contentDescription = "")
+                Icon(imageVector = Icons.Outlined.StarOutline, contentDescription = "", tint = if(isSystemInDarkTheme()) Color.White else Color.Black)
 
             }
         }
