@@ -2,6 +2,7 @@ package com.example.gmailcloneapp.components
 
 import com.example.gmailcloneapp.R
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -17,17 +18,22 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.gmailcloneapp.GmailApp
+import com.example.gmailcloneapp.ui.theme.DarkGraySurfaceGoogle
 import com.example.gmailcloneapp.ui.theme.GmailCloneAppTheme
+import com.example.gmailcloneapp.ui.theme.LightGraySurfaceGoogle
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Composable
 fun HomeAppBar(scaffoldState: ScaffoldState, scope: CoroutineScope){
+
+    val darkTheme: Boolean = isSystemInDarkTheme()
+
     Box(modifier = Modifier.padding(20.dp,10.dp)) {
         Card(
             modifier = Modifier.requiredHeight(50.dp),
             shape = RoundedCornerShape(30.dp),
-            backgroundColor = Color(0xFFEAF1FB),
+            backgroundColor = if(darkTheme) DarkGraySurfaceGoogle else LightGraySurfaceGoogle,
             elevation = 6.dp
         ){
             Row(

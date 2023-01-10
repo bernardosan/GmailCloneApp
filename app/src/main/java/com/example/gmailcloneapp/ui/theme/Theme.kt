@@ -15,13 +15,15 @@ import androidx.core.view.WindowCompat
 private val DarkColorPalette = darkColors(
     primary = Purple200,
     primaryVariant = Purple700,
-    secondary = Teal200
+    secondary = Teal200,
+    background = DarkGrayBackgroundGoogle
 )
 
 private val LightColorPalette = lightColors(
     primary = Purple500,
     primaryVariant = Purple700,
-    secondary = Teal200
+    secondary = Teal200,
+    background = Color.White
 
     /* Other default colors to override
     background = Color.White,
@@ -57,19 +59,13 @@ fun GmailCloneAppTheme(
 
 @Composable
 fun BarColorsTheme(darkTheme: Boolean = isSystemInDarkTheme()) {
-    val colors = if (darkTheme) {
-        DarkColorPalette
-    } else {
-        LightColorPalette
-    }
-
 
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = if(darkTheme) Color.Black.toArgb() else Color.White.toArgb()
-            window.navigationBarColor = if(darkTheme) Color.Black.toArgb() else LightGrayGoogle.toArgb()
+            window.statusBarColor = if(darkTheme) DarkGrayBackgroundGoogle.toArgb() else Color.White.toArgb()
+            window.navigationBarColor = if(darkTheme) DarkGraySurfaceGoogle.toArgb() else LightGraySurfaceGoogle.toArgb()
 
             WindowCompat.getInsetsController(window, view)?.isAppearanceLightStatusBars = !darkTheme
             WindowCompat.getInsetsController(window, view)?.isAppearanceLightNavigationBars = !darkTheme

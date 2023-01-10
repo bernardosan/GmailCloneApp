@@ -1,5 +1,6 @@
 package com.example.gmailcloneapp.components
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -73,7 +74,7 @@ fun MailItem(mailData: MailData){
                     .size(15.dp)
                     .padding(top = 16.dp))
             {
-                Icon(imageVector = Icons.Outlined.StarOutline, contentDescription = "")
+                Image(imageVector = Icons.Outlined.StarOutline, contentDescription = "")
 
             }
         }
