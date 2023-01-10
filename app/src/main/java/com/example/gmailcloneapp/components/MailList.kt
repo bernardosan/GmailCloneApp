@@ -1,9 +1,13 @@
 package com.example.gmailcloneapp.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.ScrollState
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
@@ -24,10 +28,13 @@ import com.example.gmailcloneapp.utils.mailList
 import com.example.gmailcloneapp.models.MailData
 
 @Composable
-fun MailList(paddingValues: PaddingValues){
-    Box(modifier = Modifier.padding(paddingValues).fillMaxSize()) {
+fun MailList(paddingValues: PaddingValues, scrollState: ScrollState = rememberScrollState()){
+    Box(modifier = Modifier
+        .padding(paddingValues)
+        .fillMaxSize()) {
         LazyColumn(modifier = Modifier
             .fillMaxWidth()
+            .scrollable(scrollState, Orientation.Vertical)
             .padding(top = 16.dp, start = 16.dp, end = 16.dp)){
             items(mailList){
                mailData -> MailItem(mailData = mailData)
