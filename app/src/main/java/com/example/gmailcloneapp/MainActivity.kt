@@ -3,7 +3,6 @@ package com.example.gmailcloneapp
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.*
@@ -45,7 +44,7 @@ fun GmailApp() {
     Scaffold(
         scaffoldState = scaffoldState,
         topBar = { HomeAppBar(scaffoldState = scaffoldState, scope = coroutineScope, openDialog = openDialog)},
-        bottomBar = { BottomNavigationMenu() },
+        bottomBar = { BottomNavigationMenu()},
         drawerContent = {
             DrawerMenu(scrollState)
         },
@@ -53,9 +52,7 @@ fun GmailApp() {
         drawerShape = customShape(),
         drawerContentColor = if(isSystemInDarkTheme()) Color.White else Color.Black,
         drawerBackgroundColor = if(isSystemInDarkTheme()) DarkGraySurfaceGoogle else LightGraySurfaceGoogle
-
     ){
-
         MailList(paddingValues = it, scrollState)
     }
 }

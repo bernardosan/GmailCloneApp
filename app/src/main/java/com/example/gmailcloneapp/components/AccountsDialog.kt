@@ -1,9 +1,8 @@
 package com.example.gmailcloneapp.components
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
+import androidx.compose.foundation.*
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -12,14 +11,17 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.outlined.ManageAccounts
 import androidx.compose.material.icons.outlined.PersonAddAlt
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -32,7 +34,7 @@ import com.example.gmailcloneapp.R
 import com.example.gmailcloneapp.models.AccountData
 import com.example.gmailcloneapp.utils.accountList
 
-@ExperimentalComposeUiApi
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun AccountsDialog(openDialog: MutableState<Boolean>){
     Dialog(
@@ -54,7 +56,7 @@ fun AccountsDialogUI(openDialog: MutableState<Boolean>, modifier: Modifier = Mod
                 IconButton(onClick = { openDialog.value = false }, modifier = Modifier.padding(0.dp)) {
                     Icon(imageVector = Icons.Default.Close, contentDescription = "")
                 }
-                Image(painter = painterResource(id = R.drawable.google_logo),
+                Image(painter = painterResource(id = if(isSystemInDarkTheme()) R.drawable.google_logo_darkmode else R.drawable.google_logo),
                     contentDescription = "Google",
                     modifier = Modifier
                         .size(22.dp)
@@ -66,7 +68,15 @@ fun AccountsDialogUI(openDialog: MutableState<Boolean>, modifier: Modifier = Mod
 
             Row(modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly){
-                Card(modifier.padding(start = 14.dp),
+                Card(modifier
+                    .padding(start = 14.dp)
+                    .clickable(
+                        interactionSource = remember { MutableInteractionSource() },
+                        indication = rememberRipple(bounded = true, color = Color.Gray),
+                        onClick = {},
+                        enabled = true,
+
+                    ),
                     shape = RoundedCornerShape(50.dp),
                     border = BorderStroke(1.dp, color = Color.Gray),
                     backgroundColor = MaterialTheme.colors.surface)
@@ -88,10 +98,11 @@ fun AccountsDialogUI(openDialog: MutableState<Boolean>, modifier: Modifier = Mod
 
             Row(modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 24.dp, top = 16.dp)) {
+                .padding(start = 24.dp, top = 16.dp)){
                 Image(
                     imageVector = Icons.Outlined.PersonAddAlt,
-                    contentDescription = "Add account"
+                    contentDescription = "Add account",
+                    colorFilter = if(isSystemInDarkTheme()) ColorFilter.tint(Color.White) else ColorFilter.tint(Color.Black)
                 )
                 Column(
                     modifier = Modifier
@@ -100,7 +111,8 @@ fun AccountsDialogUI(openDialog: MutableState<Boolean>, modifier: Modifier = Mod
                 ) {
                     Text(text = "Add another account",
                         fontWeight = FontWeight.SemiBold,
-                        fontSize = 14.sp
+                        fontSize = 14.sp,
+                        modifier = Modifier.clickable {  }
                     )
                 }
             }
@@ -110,16 +122,19 @@ fun AccountsDialogUI(openDialog: MutableState<Boolean>, modifier: Modifier = Mod
                 .padding(start = 24.dp, top = 16.dp)) {
                 Image(
                     imageVector = Icons.Outlined.ManageAccounts,
-                    contentDescription = "Add account"
+                    contentDescription = "Add account",
+                    colorFilter = if(isSystemInDarkTheme()) ColorFilter.tint(Color.White) else ColorFilter.tint(Color.Black)
                 )
                 Column(
                     modifier = Modifier
                         .weight(2.0f)
                         .padding(start = 16.dp, bottom = 16.dp)
+
                 ) {
                     Text(text = "Manage accounts on this device",
                         fontWeight = FontWeight.SemiBold,
-                        fontSize = 14.sp
+                        fontSize = 14.sp,
+                        modifier = Modifier.clickable {  }
                     )
                 }
             }
@@ -154,7 +169,8 @@ fun AccountsDialogUI(openDialog: MutableState<Boolean>, modifier: Modifier = Mod
 fun AccountItem(account: AccountData){
     Row(modifier = Modifier
         .fillMaxWidth()
-        .padding(start = 24.dp, top = 16.dp)){
+        .padding(start = 24.dp, top = 16.dp)
+        ){
         Image(painter = painterResource(id = account.icon!!),
             contentDescription = "Profile",
             modifier = Modifier

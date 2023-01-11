@@ -13,7 +13,6 @@ import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -27,7 +26,6 @@ import com.example.gmailcloneapp.ui.theme.LightGraySurfaceGoogle
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@ExperimentalComposeUiApi
 @Composable
 fun HomeAppBar(scaffoldState: ScaffoldState, scope: CoroutineScope,
                openDialog: MutableState<Boolean>
@@ -35,7 +33,7 @@ fun HomeAppBar(scaffoldState: ScaffoldState, scope: CoroutineScope,
 
     val darkTheme: Boolean = isSystemInDarkTheme()
 
-    Box(modifier = Modifier.padding(20.dp,10.dp)) {
+    Column(modifier = Modifier.padding(start = 20.dp, end = 20.dp , top = 10.dp)) {
         Card(
             modifier = Modifier.requiredHeight(50.dp),
             shape = RoundedCornerShape(30.dp),
@@ -70,7 +68,7 @@ fun HomeAppBar(scaffoldState: ScaffoldState, scope: CoroutineScope,
                             openDialog.value = true
                         }
                 )
-                if(openDialog.value == true){
+                if(openDialog.value){
                     AccountsDialog(openDialog = openDialog)
                 }
                 Divider(color = Color.Transparent, modifier = Modifier
@@ -79,6 +77,9 @@ fun HomeAppBar(scaffoldState: ScaffoldState, scope: CoroutineScope,
             }
 
         }
+
+        //TopContentBar()
+
     }
 }
 

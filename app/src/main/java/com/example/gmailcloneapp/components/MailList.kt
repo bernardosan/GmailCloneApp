@@ -29,13 +29,20 @@ import com.example.gmailcloneapp.models.MailData
 
 @Composable
 fun MailList(paddingValues: PaddingValues, scrollState: ScrollState = rememberScrollState()){
+
     Box(modifier = Modifier
         .padding(paddingValues)
         .fillMaxSize()) {
+
         LazyColumn(modifier = Modifier
             .fillMaxWidth()
-            .scrollable(scrollState, Orientation.Vertical)
-            .padding(top = 16.dp, start = 16.dp, end = 16.dp)){
+            .padding(top = 8.dp, start = 16.dp, end = 16.dp)
+            .scrollable(scrollState, Orientation.Vertical)){
+
+            item {
+                TopContentBar()
+            }
+
             items(mailList){
                mailData -> MailItem(mailData = mailData)
             }
@@ -65,11 +72,11 @@ fun MailItem(mailData: MailData){
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold
             )
-            Text(text = mailData.subject,
+            Text(text = if(mailData.subject.length > 35) mailData.subject.substring(0,32) + "..." else mailData.subject,
                 fontSize = 15.sp,
                 fontWeight = FontWeight.Bold
             )
-            Text(text = mailData.content,
+            Text(text = if(mailData.content.length > 40) mailData.content.substring(0,37) + "..." else mailData.content,
                 fontSize = 14.sp
             )
         }
@@ -96,6 +103,6 @@ fun MailItemPreview(){
             4,
             "Robert",
             "Meeting",
-            "This is regarding an important meeting",
+            "This is regarding an important meeting about the new design of the main activity",
             "22:22"))
 }
